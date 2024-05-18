@@ -47,10 +47,10 @@ class Server:
                 type(page_size) is int and\
                 page_size > 0
             dataset = self.dataset()
-            if page > len(dataset):
+            start, end = index_range(page, page_size)
+            if start > len(dataset):
                 return []
 
-            start, end = index_range(page, page_size)
             return dataset[start:end]
 
         except AssertionError as e:
