@@ -3,8 +3,8 @@
 Implementation of a simple pagination.
 """
 import csv
-from typing import List
-from typing import Tuple
+import math
+from typing import Dict, List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int]:
@@ -47,11 +47,29 @@ class Server:
                 type(page_size) is int and\
                 page_size > 0
             dataset = self.dataset()
-            if page > len(dataset):
+            start, end = index_range(page, page_size)
+            if start > len(dataset):
                 return []
 
-            start, end = index_range(page, page_size)
             return dataset[start:end]
 
         except AssertionError as e:
             raise e
+
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        """
+        Handles hypermedia pagination and retrieves info about a page.
+        """
+        page_data = self.get_page(page, page_size)
+        start, end = index_range(page, page_size)
+        dataset_len = len(self.dataset())
+        prev_page = page - 1 if start > 0 else None
+        next_page = page + 1 if end and start < dataset_len else None
+        return {
+            "page_size": len(page_data),
+            "page": page,
+            "data": page_data,
+            "next_page": next_page,
+            "prev_page": prev_page,
+            "total_pages": math.ceil(dataset_len / page_size)
+        }
