@@ -47,14 +47,13 @@ class Server:
         indexed_data_len = len(index_data)
         assert index >= 0 and index < indexed_data_len
         data = []
-        current_index = index
+        next_index = index
 
-        while len(data) < page_size and current_index < indexed_data_len:
-            if index_data.get(current_index):
-                data.append(index_data[current_index])
-            current_index += 1
+        while len(data) < page_size and next_index < indexed_data_len:
+            if index_data.get(next_index):
+                data.append(index_data[next_index])
+            next_index += 1
 
-        next_index = current_index
         return {
             "index": index,
             "next_index": next_index,
