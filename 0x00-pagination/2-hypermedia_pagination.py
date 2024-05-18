@@ -64,7 +64,7 @@ class Server:
         start, end = index_range(page, page_size)
         dataset_len = len(self.dataset())
         prev_page = page - 1 if start > 0 else None
-        next_page = page + 1 if end and start < dataset_len else None
+        next_page = page + 1 if end < dataset_len else None
         return {
             "page_size": len(page_data),
             "page": page,
