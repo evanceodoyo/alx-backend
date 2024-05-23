@@ -21,11 +21,12 @@ class MRUCache(BaseCaching):
     def put(self, key, item):
         """
         Add an item in the cache.
+        Discard the most recently used item (MRU algorithm)
         """
         if not self.cache_data.get(key):
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                last_key, _ = self.cache_data.popitem(last=True)
-                print(f"DISCARD: {last_key}")
+                most_recent_key, _ = self.cache_data.popitem(last=True)
+                print(f"DISCARD: {most_recent_key}")
 
         if key and item:
             self.cache_data[key] = item

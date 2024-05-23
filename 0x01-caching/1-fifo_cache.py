@@ -18,6 +18,7 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """
         Add an item in the cache
+        Discard the first item put in cache (FIFO algorithm)
         """
         if key and item:
             self.cache_data[key] = item

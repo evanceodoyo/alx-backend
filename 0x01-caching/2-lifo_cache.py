@@ -20,7 +20,8 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """
-        Add an item in the cache
+        Add an item in the cache.
+        Discard the last item put in cache (LIFO algorithm)
         """
         if not self.cache_data.get(key):
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:

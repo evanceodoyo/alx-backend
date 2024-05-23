@@ -21,6 +21,7 @@ class LRUCache(BaseCaching):
     def put(self, key, item):
         """
         Add an item in the cache.
+        Discard the least recently used item (LRU algorithm)
         """
         if not self.cache_data.get(key):
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
