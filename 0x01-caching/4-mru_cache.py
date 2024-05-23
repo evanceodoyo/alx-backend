@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Implements Most Recently Used (LRU) cache.
+Implements Most Recently Used (MRU) cache.
 """
 from collections import OrderedDict
 
