@@ -24,8 +24,8 @@ class LRUCache(BaseCaching):
         """
         if not self.cache_data.get(key):
             if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
-                last_key, _ = self.cache_data.popitem(last=False)
-                print(f"DISCARD: {last_key}")
+                least_key, _ = self.cache_data.popitem(last=False)
+                print(f"DISCARD: {least_key}")
 
         if key and item:
             self.cache_data[key] = item
