@@ -4,9 +4,16 @@ Flask app
 """
 from flask import Flask, g, render_template, request
 from flask_babel import Babel
+from typing import Union, Dict
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+users = {
+        1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+        2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+        3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+        4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+    }
 
 
 class Config:
@@ -33,16 +40,10 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
-def get_user() -> str:
+def get_user() -> Union[Dict, None]:
     """
     Gets user by mocking a database user table.
     """
-    users = {
-        1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-        2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-        3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-        4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-    }
     user_id = request.args.get('login_as')
     if user_id:
         return users.get(int(user_id))
@@ -51,7 +52,7 @@ def get_user() -> str:
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """
     Find user (if any) and set it as global on flask.g.user
     """
