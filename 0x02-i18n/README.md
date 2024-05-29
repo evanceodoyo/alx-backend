@@ -61,7 +61,7 @@ $ pybabel compile -d translations
 - Now you should be able to test different translations by visiting http://127.0.0.1:5000?locale=[fr|en].
 - Visiting http://127.0.0.1:5000/?locale=fr should display this level 1 heading:
 
-    ![Bonjour monde!](/assets/4.png "Bonjour monde!")
+    ![Bonjour monde!](./assets/4.png "Bonjour monde!")
 
 
 **5. Mock logging in**
@@ -80,6 +80,7 @@ users = {
 - Define a `before_request` function and use the `app.before_request decorator` to make it be executed before all other functions. `before_request` should use `get_user` to find a user if any, and set it as a global on `flask.g.user`.
 
 - In your HTML template, if a user is logged in, in a paragraph tag, display a welcome message otherwise display a default message as shown in the table below.
+
 |msgid        |English                             |French                                        |
 |-------------|------------------------------------|----------------------------------------------|
 |logged_in_as |"You are logged in as %(username)s."|"Vous êtes connecté en tant que %(username)s."|
@@ -87,11 +88,11 @@ users = {
 
 - Visiting `http://127.0.0.1:5000/` in your browser should display this:
 
-    ![Hello world!](/assets/5_1.png "Hello world!")
+    ![Hello world!](./assets/5_1.png "Hello world!")
 
 - Visiting `http://127.0.0.1:5000/?login_as=2` in your browser should display the following:
 
-    ![Hello world! Beyonce](/assets/5_2.png "Hello world! Beyonce")
+    ![Hello world! Beyonce](./assets/5_2.png "Hello world! Beyonce")
 
 **6. Use user locale**
 - Copy [5-app.py](./5-app.py) into [6-app.py](/6-app.py) and [templates/5-index.html](/templates/5-index.html) into [templates/6-index.html](/templates/6-index.html).
@@ -106,7 +107,7 @@ users = {
 
 Test by logging in as different users
 
-![Bonjour monde! Spock](/assets/6.png "Bonjour monde! Spock")
+![Bonjour monde! Spock](./assets/6.png "Bonjour monde! Spock")
 
 
 **7. Infer appropriate time zone**
@@ -129,6 +130,7 @@ Test by logging in as different users
 `Jan 21, 2020, 5:55:39 AM` or `21 janv. 2020 à 05:56:28`
 
 - Use the following translations
+
 |msgid        |English                                   |French                                        |
 |-------------|------------------------------------------|----------------------------------------------|
 |current_time_is |"The current time is %(current_time)s."|"Nous sommes le %(current_time)s."            |
@@ -136,8 +138,8 @@ Test by logging in as different users
 
 **Displaying the time in French looks like this:**
 
-![French time](/assets/8_1.png "French time")
+![French time](./assets/8_1.png "French time")
 
 **Displaying the time in English looks like this:**
 
-![English time](/assets/8_2.png "English time")
+![English time](./assets/8_2.png "English time")
