@@ -3,7 +3,7 @@
 Flask app
 """
 from flask import Flask, render_template, request
-from flask_babel import _, Babel
+from flask_babel import Babel
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
