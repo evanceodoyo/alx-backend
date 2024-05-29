@@ -29,7 +29,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale() -> str:
     """
     Determines the best match with supported languages.
