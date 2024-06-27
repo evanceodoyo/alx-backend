@@ -8,7 +8,7 @@ client.on('error', err => console.log(`Redis client not connected to the server:
 
 client.subscribe('holberton school channel');
 
-client.on('message', (channel, message) => {
+client.on('message', (_err, message) => {
   console.log(message);
   if (message === 'KILL_SERVER') {
     client.unsubscribe('holberton school channel');
