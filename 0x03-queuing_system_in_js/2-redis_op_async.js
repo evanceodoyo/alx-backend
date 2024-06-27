@@ -21,5 +21,3 @@ async function displaySchoolValue (schoolName) {
   setNewSchool('HolbertonSanFrancisco', '100');
   await displaySchoolValue('HolbertonSanFrancisco');
 })();
-
-
