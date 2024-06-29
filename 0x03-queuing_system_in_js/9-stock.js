@@ -23,7 +23,7 @@ async function reserveStockById (itemId, stock) {
 }
 
 async function getCurrentReservedStockById (itemId) {
-  return promisify(client.GET).bind(client)(`item.${itemId}`);
+  return promisify(client.get).bind(client)(`item.${itemId}`);
 }
 
 app.get('/list_products', (_req, res) => {
